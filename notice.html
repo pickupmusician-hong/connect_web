@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONNECT</title>
+    <meta name="description" content="주식회사 커넥트의 공지사항, 이용약관, 개인정보처리방침 등을 확인하실 수 있습니다.">
+    <meta property="og:title" content="CONNECT">
+    <meta property="og:description" content="주식회사 커넥트의 최신 공지사항을 확인하세요.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="logo/connect_ci_only.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/notice.css">
+    <link rel="icon" href="logo/connect_favi.png" type="image/png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap">
+</head>
+<body class="page-notice">
+
+    <header class="header header-sub">
+        <a href="index.html" class="logo-link" aria-label="CONNECT 홈으로 이동">
+            <img src="logo/connect_color_ci2.png" alt="CONNECT Logo" class="logo">
+        </a>
+        <div class="menu-toggle" id="mobile-menu-btn" role="button" aria-label="메뉴 열기/닫기" tabindex="0">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav class="nav" id="nav-menu" aria-label="메인 네비게이션">
+            <a href="about.html" class="nav-link">회사소개</a>
+            <a href="tech.html" class="nav-link">핵심기술</a>
+            <a href="business.html" class="nav-link">사업영역</a>
+            <a href="notice.html" class="nav-link">공지사항</a>
+        </nav>
+    </header>
+
+    <main class="notice-wrap">
+        <div class="notice-content">
+
+            <h1 class="notice-main-title">공지사항</h1>
+
+            <div id="notice-list-view">
+                <ul class="notice-list" id="notice-list-container"></ul>
+                <div class="pagination" id="pagination-container"></div>
+            </div>
+
+            <div id="notice-detail-view" style="display: none;">
+                <div class="detail-header">
+                    <h2 class="detail-title" id="detail-title"></h2>
+                    <span class="detail-date" id="detail-date"></span>
+                </div>
+                <div class="detail-body" id="detail-body"></div>
+                <div class="detail-footer">
+                    <button class="btn-list" onclick="showList(true)">목록으로 돌아가기</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer id="footer" class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <img src="logo/connect_color_ci2.png" alt="CONNECT Logo" class="logo">
+                <div class="footer-links">
+                    <a href="notice.html">공지사항</a>
+                    <a href="notice.html?id=2">이용약관</a>
+                    <a href="notice.html?id=0">개인정보처리방침</a>
+                    <a href="contact.html">고객센터</a>
+                </div>
+            </div>
+            <div class="footer-info">
+                <p>
+                    <span class="info-item">주식회사 커넥트</span>
+                    <span class="info-item">대표이사 김태익</span>
+                    <span class="info-item">사업자등록번호 393-86-03806</span>
+                </p>
+                <p><span class="info-item">경기도 광명시 오리로 756번길 21, 5층 24호</span></p>
+                <p>
+                    <span class="info-item">TEL : 010-5647-7357</span>
+                    <span class="info-item">EMAIL : taeik7777@gmail.com</span>
+                </p>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CONNECT Co., Ltd. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/notice.js"></script>
+</body>
+</html>

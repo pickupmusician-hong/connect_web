@@ -1,0 +1,525 @@
+/* =======================================================
+   메인 페이지 전용 스타일 (Native Fullpage Scroll Snap)
+======================================================= */
+
+/* 1. 기본 브라우저 스크롤 완벽 차단 및 스냅 래퍼 설정 */
+html, body {
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    overflow: hidden;
+    background-color: var(--c-bg);
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior: none;
+}
+
+/* 래퍼 내부에서만 네이티브 스크롤 작동 */
+.fp-wrapper {
+    width: 100%;
+    height: 100vh; height: 100dvh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    -ms-overflow-style: none; scrollbar-width: none;
+}
+.fp-wrapper::-webkit-scrollbar { display: none; }
+
+.fp-section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    width: 100%;
+    height: 100vh; height: 100dvh;
+    position: relative; display: flex; align-items: center; justify-content: center;
+    overflow: hidden; transition: background-color 0.5s ease;
+}
+
+/* =======================================================
+   2. 헤더 다이나믹 테마 오버라이드
+======================================================= */
+.header { transition: background 0.3s, border-bottom 0.3s; }
+.header .logo { transition: filter 0.3s; }
+
+/* 메인 페이지에서는 is-current 네비 컬러를 파란색으로 표시 */
+.header .nav-link.is-current { color: var(--c-primary); }
+
+/* 기본 모드 */
+.header .nav-link { color: var(--c-dark); transition: color 0.3s ease; text-decoration: none; }
+.header .nav-link:hover { color: #ccc; }
+.header .menu-toggle span { background-color: var(--c-dark); }
+
+/* 블루 모드 (About 섹션) */
+.header.blue-mode { background: rgba(0, 125, 215, 0.95); border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
+.header.blue-mode .nav-link,
+.header.blue-mode .nav-link.is-current { color: var(--c-white); }
+.header.blue-mode .nav-link:hover { color: rgba(255, 255, 255, 0.65); }
+.header.blue-mode .menu-toggle span { background-color: var(--c-white); }
+.header.blue-mode .logo { filter: brightness(0) invert(1); }
+
+/* 다크 모드 (Business 슬라이드 1번 등) */
+.header.dark-mode { background: rgba(17, 17, 17, 0.95); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+.header.dark-mode .nav-link,
+.header.dark-mode .nav-link.is-current { color: var(--c-white); }
+.header.dark-mode .nav-link:hover { color: #ccc; }
+.header.dark-mode .menu-toggle span { background-color: var(--c-white); }
+.header.dark-mode .logo { filter: brightness(0) invert(1); }
+
+/* 테크 모드 (밝은 연회색 배경) */
+.header.tech-mode { background: rgba(248, 249, 250, 0.95); border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+.header.tech-mode .nav-link { color: var(--c-dark); }
+.header.tech-mode .nav-link.is-current { color: var(--c-primary); }
+.header.tech-mode .nav-link:hover { color: #ccc; }
+.header.tech-mode .menu-toggle span { background-color: var(--c-dark); }
+.header.tech-mode .logo { filter: none; }
+
+/* 모바일 햄버거 메뉴 테마 연동 */
+@media (max-width: 768px) {
+    .header .nav { background-color: var(--c-bg); box-shadow: -5px 0 20px rgba(0,0,0,0.1); }
+    .header .nav-link { border-bottom: 1px solid rgba(0,0,0,0.05); color: var(--c-dark); }
+
+    .header.blue-mode .nav { background-color: var(--c-primary); box-shadow: -5px 0 20px rgba(0,0,0,0.2); }
+    .header.blue-mode .nav-link { border-bottom: 1px solid rgba(255,255,255,0.1); color: var(--c-white); }
+
+    .header.dark-mode .nav { background-color: var(--c-dark); box-shadow: -5px 0 20px rgba(0,0,0,0.5); }
+    .header.dark-mode .nav-link { border-bottom: 1px solid rgba(255,255,255,0.1); color: var(--c-white); }
+
+    .header.tech-mode .nav { background-color: var(--c-bg); box-shadow: -5px 0 20px rgba(0,0,0,0.1); }
+    .header.tech-mode .nav-link { border-bottom: 1px solid rgba(0,0,0,0.05); color: var(--c-dark); }
+}
+
+/* =======================================================
+   3. 메인 히어로 (뫼비우스)
+======================================================= */
+.hero-inner {
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 100%; max-width: var(--max-width); padding: 0 60px;
+    display: flex; align-items: center; height: 100%; z-index: 10;
+}
+.hero-content {
+    position: relative; max-width: 600px; margin-top: -50px;
+    z-index: 20; text-align: left;
+}
+.hero-title {
+    font-size: clamp(3rem, 5.5vw, 5rem); font-weight: 700;
+    line-height: 1.15; letter-spacing: -0.04em; margin-bottom: 30px;
+    color: var(--c-dark); word-break: keep-all;
+}
+.text-gradient {
+    background: linear-gradient(90deg, var(--c-primary) 20%, var(--c-accent) 80%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+.hero-visual {
+    position: absolute; right: -10%; top: 50%; transform: translateY(-50%);
+    width: 65%; max-width: 1100px; z-index: 1; pointer-events: none;
+    transition: right 0.5s ease;
+}
+.infinity-svg {
+    width: 100%; height: auto;
+    transform: rotate(-10deg); animation: float 6s ease-in-out infinite alternate;
+}
+.infinity-flow {
+    stroke-dasharray: 100 120;
+    stroke-dashoffset: 110;
+    animation: drawErase 5s ease-in-out infinite;
+}
+@keyframes drawErase { 0% { stroke-dashoffset: 110; } 50% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -110; } }
+@keyframes float { 0% { transform: rotate(-10deg) translateY(0); } 100% { transform: rotate(-10deg) translateY(-30px); } }
+
+/* =======================================================
+   4. 스크롤 다운 화살표 (공통 및 비즈니스 연동)
+======================================================= */
+.scroll-indicator {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    z-index: 30; text-decoration: none; cursor: pointer; transition: opacity 0.3s;
+}
+.scroll-indicator:hover { opacity: 0.7; }
+.arrow {
+    display: block; width: 30px; height: 30px;
+    border-bottom: 4px solid var(--c-dark); border-right: 4px solid var(--c-dark);
+    transform: rotate(45deg); animation: smoothArrowFade 2s infinite ease-in-out;
+    transition: border-color 0.3s ease;
+}
+
+/* 배경 테마에 따른 화살표 색상 연동 */
+#about .arrow { border-color: var(--c-white); }
+#tech .arrow { border-color: var(--c-dark); }
+#business.slide0-active .arrow { border-color: var(--c-white); }
+#business.slide1-active .arrow { border-color: var(--c-white); /* 비디오 배경이므로 화이트로 유지 */ }
+
+@keyframes smoothArrowFade {
+    0% { opacity: 0; transform: rotate(45deg) translate(-6px, -6px); }
+    50% { opacity: 1; transform: rotate(45deg) translate(0, 0); }
+    100% { opacity: 0; transform: rotate(45deg) translate(6px, 6px); }
+}
+
+/* =======================================================
+   5. 좌측 정렬 타이포그래피 레이아웃
+======================================================= */
+.fp-inner-left {
+    width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 0 60px;
+    display: flex; flex-direction: column; align-items: flex-start; text-align: left;
+    z-index: 10; position: relative;
+}
+.fp-content {
+    position: relative; max-width: 700px; text-align: left; margin-top: -50px;
+}
+
+.fp-label {
+    display: block; font-size: 1.125rem; font-weight: 800;
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px;
+}
+.fp-title-lg {
+    font-size: clamp(3rem, 5.5vw, 5rem); font-weight: 800;
+    line-height: 1.2; margin-bottom: 30px; letter-spacing: -0.04em; word-break: keep-all;
+}
+.fp-desc {
+    font-size: clamp(1.1rem, 1.5vw, 1.25rem); line-height: 1.7;
+    margin-bottom: 50px; max-width: 650px; word-break: keep-all; font-weight: 400;
+}
+
+/* 공통 버튼 디자인 */
+.btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    height: 56px; padding: 0 32px 0 28px;
+    border-radius: 0 28px 28px 0;
+    font-size: 1.125rem; font-weight: 700;
+    transition: transform 0.3s ease, background-color 0.3s, color 0.3s;
+    text-decoration: none; box-shadow: none;
+}
+.btn-arrow {
+    margin-left: 8px; font-weight: 900; font-family: sans-serif;
+    transition: transform 0.3s ease; display: inline-block;
+}
+.btn:hover .btn-arrow { transform: translate(4px, -4px); }
+
+/* 버튼 색상 베리에이션 */
+.btn-white { background: var(--c-white); color: var(--c-primary); }
+.btn-cyan { background: #38bdf8; color: var(--c-white); }
+.btn-cyan:hover { background: #0ea5e9; }
+.btn-orange { background: var(--c-accent); color: var(--c-white); }
+.btn-blue { background: var(--c-primary); color: var(--c-white); }
+
+/* =======================================================
+   6. 각 섹션별 테마
+======================================================= */
+/* [회사소개] 파란색 테마 */
+#about { background-color: var(--c-primary); color: var(--c-white); }
+#about .fp-label { color: rgba(255, 255, 255, 0.9); }
+#about .fp-title-lg { color: var(--c-white); }
+#about .fp-desc { color: rgba(255, 255, 255, 0.9); }
+
+.network-canvas {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 0; opacity: 1;
+}
+#about.is-active .network-canvas { opacity: 1; }
+
+/* [핵심기술] 모던 실사 기반 Split 레이아웃 */
+#tech { background-color: var(--c-bg); color: var(--c-dark); padding: 0; }
+
+.tech-split-layout {
+    display: flex; width: 100%; height: 100vh;
+    align-items: stretch;
+}
+.tech-image-area {
+    flex: 1; position: relative; overflow: hidden;
+}
+.tech-image {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: brightness(0.95);
+}
+.tech-text-area {
+    flex: 1; display: flex; flex-direction: column; justify-content: center;
+    align-items: flex-start;
+    padding: 0 8vw; background-color: var(--c-bg);
+}
+
+/* [사업영역] 가로 스와이프 슬라이더 */
+#business {
+    padding: 0; align-items: flex-start; display: block;
+    background-color: var(--c-dark); transition: background-color 0.5s ease;
+}
+#business.slide1-active { background-color: var(--c-bg); }
+
+.biz-slider-container {
+    display: flex; width: 100%; height: 100vh; height: 100dvh;
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth;
+}
+.biz-slider-container::-webkit-scrollbar { display: none; }
+
+.biz-slide-item {
+    flex: 0 0 100vw; width: 100vw; height: 100%;
+    position: relative; scroll-snap-align: start; scroll-snap-stop: always;
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+
+.biz-slide-item .fp-inner-left { z-index: 10; }
+
+/* 슬라이드 내부 테마 분기 */
+.biz-slide-item.dark { background-color: var(--c-dark); color: var(--c-white); }
+.biz-slide-item.dark .fp-label { color: var(--c-accent); }
+.biz-slide-item.dark .fp-title-lg { color: var(--c-white); }
+.biz-slide-item.dark .fp-desc { color: var(--c-text-light); }
+
+.biz-slide-item.light { background-color: var(--c-bg); color: var(--c-dark); }
+.biz-slide-item.light .fp-label { color: var(--c-primary); }
+.biz-slide-item.light .fp-title-lg { color: var(--c-dark); }
+.biz-slide-item.light .fp-desc { color: var(--c-text-secondary); }
+
+/* 두 번째 슬라이드: 비디오 배경 */
+.video-slide {
+    background-color: var(--c-dark); /* 기본 배경색 어둡게 */
+}
+.biz-video-wrap {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; overflow: hidden;
+}
+.bg-video {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: brightness(0.75); /* 영상 약간 어둡게 처리하여 텍스트 가독성 확보 */
+    transform: scale(1.02);
+}
+.video-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 100%);
+    z-index: 1;
+}
+
+/* -------------------------------------------------------
+   CCTV 산업 현장 안전 AI 모니터링 뷰
+------------------------------------------------------- */
+.vision-cctv-container {
+    position: absolute; right: 0;
+    top: 60%; transform: translateY(-50%);
+    width: 800px; height: 950px;
+    z-index: 1; pointer-events: none; overflow: hidden;
+}
+
+.cctv-rail {
+    position: absolute; bottom: 300px; right: -20px;
+    width: 400px; height: auto; z-index: 1; opacity: 0.9;
+}
+.cctv-robot {
+    position: absolute; bottom: 600px; right: 70px;
+    width: 150px; height: auto; z-index: 1; opacity: 0.9;
+}
+.cctv-target {
+    position: absolute; display: flex; flex-direction: column;
+    align-items: center; z-index: 2;
+}
+.cctv-human { width: 100%; height: auto; display: block; opacity: 0.95; }
+
+.cctv-box {
+    position: absolute; top: -5px; left: -5px; right: -5px; bottom: -5px;
+    border: 3px solid transparent; opacity: 0; pointer-events: none;
+}
+.cctv-label {
+    position: absolute; top: -24px; left: -3px;
+    padding: 3px 6px; font-size: 11px; font-weight: 800; color: #fff;
+    font-family: sans-serif; letter-spacing: 0.05em; text-transform: uppercase;
+}
+.blue-box { border-color: var(--c-primary); }
+.blue-box .cctv-label { background-color: var(--c-primary); }
+.red-box { border-color: #ff0000; }
+.red-box .cctv-label { background-color: #ff0000; }
+
+/* 타겟 배치 */
+.t-blue1 { width: 55px; right: 200px; bottom: 300px; z-index: 2; }
+.t-blue2 { width: 55px; right: 50px; bottom: 360px; z-index: 2; }
+.t-blue3 { width: 55px; right: 180px; bottom: 580px; z-index: 2; }
+.t-red1 { width: 55px; right: 400px; bottom: 380px; z-index: 2; }
+.t-red2 { width: 55px; right: 330px; bottom: 110px; z-index: 2; }
+.t-fall { width: 130px; right: 520px; bottom: 250px; z-index: 2; }
+
+/* 순차 포착 애니메이션 */
+@keyframes detectBox {
+    0% { opacity: 0; transform: scale(1.1); }
+    100% { opacity: 1; transform: scale(1); }
+}
+#business.cctv-done .t-blue1 .cctv-box { animation: detectBox 0.3s ease-out forwards; animation-delay: 0.15s; }
+#business.cctv-done .t-blue2 .cctv-box { animation: detectBox 0.3s ease-out forwards; animation-delay: 0.35s; }
+#business.cctv-done .t-blue3 .cctv-box { animation: detectBox 0.3s ease-out forwards; animation-delay: 0.55s; }
+#business.cctv-done .t-red1 .cctv-box  { animation: detectBox 0.3s ease-out forwards; animation-delay: 0.75s; }
+#business.cctv-done .t-red2 .cctv-box  { animation: detectBox 0.3s ease-out forwards; animation-delay: 0.95s; }
+#business.cctv-done .t-fall .cctv-box  { animation: detectBox 0.3s ease-out forwards; animation-delay: 1.15s; }
+
+/* 슬라이더 네비게이션 컨트롤러 */
+.biz-controls {
+    position: absolute; bottom: 80px; left: var(--header-px);
+    display: flex; align-items: center; gap: 16px; z-index: 30;
+    transition: 0.3s ease;
+}
+.biz-btn {
+    width: 44px; height: 44px; border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: transparent; color: var(--c-white);
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: 0.3s;
+}
+.biz-btn:hover:not(:disabled) { background: rgba(255, 255, 255, 0.15); border-color: var(--c-white); }
+.biz-btn:disabled { opacity: 0.3; cursor: default; }
+
+.biz-dots { display: flex; gap: 8px; }
+.biz-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background-color: rgba(255,255,255,0.4); cursor: pointer; transition: all 0.3s ease;
+}
+.biz-dot.active { background-color: var(--c-accent); width: 28px; border-radius: 5px; }
+
+/* 슬라이드 2번 진입 시 컨트롤러 테마 (어두운 비디오 배경이므로 1번 탭과 같은 화이트 유지하되, 활성화 탭 색상만 파란색으로 교체) */
+#business.slide1-active .biz-dot.active { background-color: var(--c-primary); }
+
+/* =======================================================
+   7. 공지사항 & 푸터 섹션
+======================================================= */
+.fp-notice {
+    flex-direction: column; justify-content: space-between;
+    padding-top: 100px; background-color: var(--c-bg);
+}
+.fp-notice-content {
+    flex: 1; display: flex; flex-direction: column; justify-content: center;
+    width: 100%; max-width: var(--max-width); margin: 0 auto;
+    padding: 0 60px; text-align: left; z-index: 10;
+}
+
+.notice-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 20px; padding-bottom: 0;
+}
+.notice-header .fp-title-lg { margin-bottom: 0; font-size: 2.2rem; font-weight: 800; letter-spacing: -0.04em; }
+
+.notice-list { list-style: none; padding: 0; margin: 0; border-top: 2px solid #191f28; }
+.notice-item {
+    display: flex; flex-direction: column;
+    padding: 24px 16px; margin: 0 -16px; text-decoration: none;
+    border-bottom: 1px solid #f2f4f6; transition: background-color 0.2s ease; cursor: pointer;
+}
+@media (hover: hover) and (pointer: fine) {
+    .notice-item:hover { background-color: #f2f4f6; border-bottom-color: transparent; border-radius: 12px; }
+}
+.item-title {
+    font-size: 1.15rem; font-weight: 600; color: #333d4b; margin: 0 0 8px 0;
+    line-height: 1.5; word-break: keep-all; transition: color 0.2s ease;
+}
+.notice-item:hover .item-title { color: #191f28; }
+.item-date { font-size: 0.95rem; color: var(--c-text-muted); }
+
+.btn-outline {
+    display: inline-flex; align-items: center; justify-content: center;
+    height: 40px; padding: 0 24px 0 20px;
+    border-radius: 0 20px 20px 0;
+    font-size: 0.95rem; font-weight: 600;
+    background: rgba(0,0,0,0.05); color: #4e5968;
+    transition: transform 0.3s; text-decoration: none; border: none; box-shadow: none;
+}
+.btn-outline:hover { background: rgba(0,0,0,0.05); color: #4e5968; }
+.btn-outline .btn-arrow { margin-left: 6px; transition: transform 0.3s ease; display: inline-block; }
+.btn-outline:hover .btn-arrow { transform: translate(3px, -3px); }
+
+.fp-notice .footer {
+    width: 100%; flex-shrink: 0; padding: 40px 0 30px;
+    background: var(--c-dark); color: #999; z-index: 10; position: relative;
+}
+
+/* =======================================================
+   8. 페이드업 애니메이션 (메인 페이지용 오버라이드)
+======================================================= */
+.reveal { opacity: 0; transform: translateY(40px); transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+.is-visible { opacity: 1; transform: translateY(0); }
+
+/* =======================================================
+   9. 모바일 반응형
+======================================================= */
+@media (max-width: 1200px) { .hero-visual { right: -15%; } }
+@media (max-width: 1024px) {
+    .hero-title, .fp-title-lg { font-size: 3.5rem; }
+    .hero-visual { right: -20%; width: 80%; }
+}
+@media (max-width: 768px) {
+    .fp-section { height: 100vh; height: 100dvh; padding: 0; }
+    .hero { height: 100vh; height: 100dvh; padding: 0; }
+
+    .hero-inner, .fp-inner-left, .biz-slide-item .fp-inner-left { padding: 0 24px; }
+    .hero-content, .fp-content {
+        margin: 0; text-align: left; display: flex; flex-direction: column;
+        align-items: flex-start; margin-top: -30px; width: 100%;
+    }
+
+    .hero-title, .fp-title-lg { font-size: 2.6rem; text-align: left; margin-bottom: 20px; }
+    .fp-label { margin-bottom: 12px; font-size: 1rem; }
+    .fp-desc { font-size: 1.05rem; margin-bottom: 30px; line-height: 1.6; }
+
+    .btn { height: 50px; font-size: 1rem; padding: 0 24px 0 20px; border-radius: 0 25px 25px 0; }
+    .hero-visual { right: -40%; width: 110%; opacity: 0.15; }
+
+    /* 모바일 파티클 마스크 해제 */
+    .network-canvas { -webkit-mask-image: none; mask-image: none; }
+    #about.is-active .network-canvas { opacity: 0.6; }
+
+    /* 비즈니스 모바일 슬라이더 컨트롤러 */
+    .biz-controls { left: 24px; bottom: 80px; gap: 12px; }
+    .biz-btn { width: 36px; height: 36px; }
+    .biz-btn svg { width: 16px; height: 16px; }
+
+    .scroll-indicator { display: flex; bottom: 15px; }
+    .arrow { width: 20px; height: 20px; border-width: 3px; }
+
+    /* 핵심기술 모바일 Split 레이아웃 (상하 분할) */
+    .tech-split-layout {
+        flex-direction: column;
+    }
+    .tech-image-area {
+        flex: 0 0 40vh; /* 상단 40% 영역을 이미지로 */
+    }
+    .tech-text-area {
+        flex: 1; /* 나머지 하단 영역을 텍스트로 */
+        padding: 40px 24px;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    /* 비즈니스 CCTV 뷰 모바일 */
+    .vision-cctv-container {
+        right: 10px; top: auto;
+        bottom: 15px;
+        width: 800px; height: 1100px;
+        transform: scale(0.42);
+        transform-origin: bottom right;
+        opacity: 0.7;
+        overflow: visible;
+    }
+
+    .bg-watermark-cube {
+        right: auto; left: 50%; transform: translate(-50%, -50%);
+        width: 80vw; height: 80vw; opacity: 0.05;
+    }
+
+    .fp-notice {
+        display: flex; flex-direction: column; justify-content: space-between;
+        padding-top: 60px; padding-bottom: 0;
+    }
+    .fp-notice-content {
+        flex: 1; display: flex; flex-direction: column; justify-content: center;
+        padding: 0 24px; width: 100%; margin-top: auto; margin-bottom: auto;
+    }
+    .notice-header {
+        flex-direction: row; align-items: flex-end; justify-content: space-between;
+        gap: 10px; border-bottom: 1px solid var(--c-text-light);
+        padding-bottom: 8px; margin-bottom: 8px;
+    }
+    .notice-header .fp-title-lg { font-size: 1.6rem; margin-bottom: 0; }
+    .btn-outline { height: 32px; padding: 0 16px 0 12px; font-size: 0.85rem; border-radius: 0 16px 16px 0; }
+    .notice-item { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 8px; margin: 0 -8px; }
+    .item-title { font-size: 0.95rem; white-space: normal; line-height: 1.4; }
+
+    .fp-notice .footer { padding: 15px 0 10px; margin-top: 0; }
+    .fp-notice .footer .container { padding: 0 20px; }
+    .fp-notice .footer .footer-top {
+        flex-direction: column; align-items: flex-start; gap: 8px;
+        margin-bottom: 10px; padding-bottom: 10px;
+    }
+    .fp-notice .footer .footer-links { flex-wrap: wrap; gap: 12px; }
+    .fp-notice .footer .footer-links a { font-size: 0.8rem; }
+    .fp-notice .footer .footer-info { font-size: 0.7rem; margin-bottom: 2px; }
+    .fp-notice .footer .footer-bottom { font-size: 0.65rem; }
+}

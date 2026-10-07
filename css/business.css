@@ -1,0 +1,292 @@
+/* =======================================================
+   사업영역 (business.css)
+   풀블리드 스토리텔링 레이아웃
+======================================================= */
+
+body.page-business {
+    background: var(--c-bg, #f8f9fa);
+    color: var(--c-text, #333);
+    font-family: var(--font-main);
+    overflow-x: hidden;
+}
+
+/* ---------------------------------------------------
+   Hero
+--------------------------------------------------- */
+.biz-hero {
+    padding: clamp(120px, 14vw, 160px) clamp(20px, 5vw, 60px) clamp(50px, 6vw, 70px);
+    max-width: var(--max-width, 1200px);
+    margin: 0 auto;
+}
+.label-text {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--c-primary);
+    margin-bottom: 20px;
+}
+.biz-hero h1 {
+    font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+    color: var(--c-dark, #111);
+    margin-bottom: 20px;
+    word-break: keep-all;
+}
+.sub-text {
+    font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+    color: var(--c-text-secondary, #555);
+    line-height: 1.6;
+}
+
+/* ---------------------------------------------------
+   Story Section
+   미디어 위 타이틀 오버레이 + 본문 밀착
+--------------------------------------------------- */
+.story {
+    margin-bottom: clamp(60px, 8vw, 100px);
+}
+
+/* 비디오 / 이미지 */
+.story-visual {
+    position: relative;
+    max-width: var(--max-width, 1200px);
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 60px);
+    height: clamp(360px, 45vw, 580px);
+}
+.story-media-box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 4px;
+}
+.story-media-box img,
+.story-media-box video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 4px;
+}
+.story-media-box iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    border: none;
+}
+.story-visual-overlay {
+    position: absolute;
+    inset: 0;
+    border-radius: 4px;
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0) 25%,
+        rgba(0,0,0,0.65) 100%
+    );
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* 킥커 + 타이틀: 이미지 위 오버레이 */
+.story-overlay-text {
+    position: absolute;
+    bottom: clamp(24px, 4vw, 48px);
+    left: clamp(24px, 4vw, 48px);
+    right: clamp(24px, 4vw, 48px);
+    z-index: 10;
+    color: #fff;
+    pointer-events: none;
+}
+.story-kicker {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+.kicker-num {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--c-accent, #E87522);
+}
+.kicker-line {
+    width: 32px;
+    height: 1.5px;
+    background: rgba(255,255,255,0.5);
+}
+.kicker-cat {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.6);
+}
+.story-overlay-text h2 {
+    font-size: clamp(1.5rem, 3.5vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    word-break: keep-all;
+    color: #fff;
+}
+
+/* 텍스트 */
+.story-content {
+    max-width: var(--max-width, 1200px);
+    margin: 0 auto;
+    padding: clamp(28px, 3vw, 40px) clamp(20px, 5vw, 60px) clamp(40px, 5vw, 60px);
+    border-bottom: 1px solid var(--c-border);
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(40px, 5vw, 80px);
+}
+
+/* 설명 */
+.story-content > p {
+    font-size: clamp(1rem, 1.3vw, 1.1rem);
+    color: var(--c-text-secondary, #555);
+    line-height: 1.85;
+    flex: 1;
+    min-width: 0;
+    word-break: keep-all;
+    margin-bottom: 0;
+}
+
+/* 디테일 2컬럼 */
+.story-detail {
+    display: flex;
+    gap: clamp(40px, 6vw, 80px);
+    flex-shrink: 0;
+}
+.detail-col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.detail-col strong {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--c-dark, #111);
+    text-transform: uppercase;
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid var(--c-dark, #111);
+    margin-bottom: 4px;
+}
+.detail-col span {
+    font-size: 0.95rem;
+    color: var(--c-text-muted, #8b95a1);
+    line-height: 1.5;
+}
+
+/* ---------------------------------------------------
+   CTA
+--------------------------------------------------- */
+.biz-cta {
+    padding: clamp(100px, 14vw, 180px) 20px;
+    text-align: center;
+}
+.biz-cta-inner {
+    max-width: 600px;
+    margin: 0 auto;
+}
+.biz-cta h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+    color: var(--c-dark, #111);
+    margin-bottom: 36px;
+    word-break: keep-all;
+}
+.cta-link {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--c-primary);
+    border-bottom: 2px solid var(--c-primary);
+    padding-bottom: 4px;
+    transition: color 0.2s, border-color 0.2s;
+}
+.cta-link:hover {
+    color: var(--c-accent);
+    border-color: var(--c-accent);
+}
+
+/* ---------------------------------------------------
+   Reveal
+--------------------------------------------------- */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---------------------------------------------------
+   Responsive
+--------------------------------------------------- */
+@media (max-width: 768px) {
+    .biz-hero {
+        padding: 90px 20px 30px;
+    }
+    .biz-hero h1 {
+        font-size: clamp(1.8rem, 7vw, 2.4rem);
+    }
+    .story-visual {
+        height: clamp(220px, 55vw, 340px);
+    }
+    .story-overlay-text {
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+    }
+    .story-kicker {
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+    .kicker-num {
+        font-size: 0.8rem;
+    }
+    .kicker-line {
+        width: 20px;
+    }
+    .kicker-cat {
+        font-size: 0.75rem;
+    }
+    .story-overlay-text h2 {
+        font-size: clamp(1.2rem, 5vw, 1.5rem);
+        line-height: 1.25;
+    }
+    .story-content {
+        padding: 24px 20px 40px;
+        flex-direction: column;
+        gap: 24px;
+    }
+    .story-content > p {
+        margin-bottom: 0;
+    }
+    .story-detail {
+        gap: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .story-overlay-text {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+    }
+    .story-overlay-text h2 {
+        font-size: 1.25rem;
+    }
+}

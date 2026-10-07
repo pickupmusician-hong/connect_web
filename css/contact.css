@@ -1,0 +1,115 @@
+/* =======================================================
+   고객센터 전용 스타일
+======================================================= */
+body {
+    display: flex; flex-direction: column; min-height: 100vh;
+    background-color: var(--c-bg); overflow-y: scroll;
+}
+
+/* 본문 영역 */
+.contact-wrap {
+    flex: 1; width: 100%; max-width: var(--max-width);
+    margin: 0 auto; padding: 180px 60px 140px;
+}
+
+.contact-title {
+    font-size: 2.8rem; font-weight: 800; color: #191f28;
+    letter-spacing: -0.04em; margin: 0 0 20px 0;
+}
+.contact-desc {
+    font-size: 1.15rem; color: var(--c-text-secondary); line-height: 1.7;
+    margin-bottom: 60px; word-break: keep-all; max-width: 600px;
+}
+
+/* 컨택트 그리드 */
+.contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: flex-start;
+}
+
+/* 회사 정보 카드 */
+.info-card {
+    background: var(--c-white); border-radius: 24px;
+    padding: 48px; border: 1px solid rgba(0,0,0,0.06);
+}
+.info-card-title {
+    font-size: 1.3rem; font-weight: 800; color: var(--c-dark);
+    margin-bottom: 32px; letter-spacing: -0.02em;
+}
+.info-row {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 16px 0; border-bottom: 1px solid #f2f4f6;
+}
+.info-row:last-child { border-bottom: none; }
+.info-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: rgba(0, 125, 215, 0.08); color: var(--c-primary);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.info-detail { flex: 1; }
+.info-label {
+    font-size: 0.85rem; font-weight: 700; color: var(--c-text-muted);
+    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px;
+}
+.info-value {
+    font-size: 1.05rem; font-weight: 500; color: var(--c-dark);
+    line-height: 1.5; word-break: keep-all;
+}
+.info-value a { color: var(--c-primary); text-decoration: none; transition: opacity 0.2s, color 0.2s; }
+.info-value a:hover { opacity: 0.7; }
+
+/* 문의 폼 */
+.contact-form {
+    background: var(--c-white); border-radius: 24px;
+    padding: 48px; border: 1px solid rgba(0,0,0,0.06);
+}
+.form-title {
+    font-size: 1.3rem; font-weight: 800; color: var(--c-dark);
+    margin-bottom: 32px; letter-spacing: -0.02em;
+}
+.form-group { margin-bottom: 20px; }
+.form-label {
+    display: block; font-size: 0.9rem; font-weight: 600;
+    color: var(--c-text); margin-bottom: 8px;
+}
+.form-input,
+.form-textarea {
+    width: 100%; padding: 14px 16px; border: 1px solid #e9ecef;
+    border-radius: 12px; font-size: 1rem; font-family: inherit;
+    color: var(--c-dark); background: var(--c-bg);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+}
+.form-input:focus,
+.form-textarea:focus {
+    border-color: var(--c-primary);
+    box-shadow: 0 0 0 3px rgba(0, 125, 215, 0.1);
+}
+.form-input::placeholder,
+.form-textarea::placeholder { color: #c4c9ce; }
+.form-textarea { min-height: 160px; resize: vertical; }
+
+.form-submit {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 100%; height: 56px; margin-top: 8px;
+    border: none; border-radius: 14px; cursor: pointer;
+    font-size: 1.1rem; font-weight: 700; font-family: inherit;
+    background: var(--c-primary); color: var(--c-white);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+.form-submit:hover { background: #0069b8; }
+.form-submit:active { transform: scale(0.98); }
+
+
+
+/* 모바일 반응형 */
+@media (max-width: 1024px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 30px; }
+}
+@media (max-width: 768px) {
+    .contact-wrap { padding: 140px 24px 80px; }
+    .contact-title { font-size: 2.2rem; }
+    .contact-desc { font-size: 1.05rem; margin-bottom: 40px; }
+    .info-card, .contact-form { padding: 30px 24px; border-radius: 20px; }
+}
