@@ -71,3 +71,12 @@ body {
     .detail-body h4 { font-size: 1.1rem; margin: 32px 0 12px 0; }
     .detail-footer { margin-top: 60px; }
 }
+
+/* 상단 네비게이션 현재 탭 주황색 표시 */
+.nav-link.is-current {
+    color: var(--c-accent) !important;
+}
+.nav-link.is-current:hover {
+    color: var(--c-accent) !important;
+    opacity: 0.7;
+}
