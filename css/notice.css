@@ -46,10 +46,14 @@ body {
 .detail-date { font-size: 0.95rem; color: var(--c-text-muted); }
 
 .detail-body { font-size: 1.05rem; line-height: 1.8; color: #333d4b; min-height: 300px; }
+.detail-body h3 { font-size: 1.35rem; font-weight: 800; color: #191f28; margin: 56px 0 20px 0; letter-spacing: -0.02em; }
+.detail-body h3:first-child { margin-top: 0; }
+.detail-body h3 + h4 { margin-top: 20px; }
 .detail-body h4 { font-size: 1.15rem; font-weight: 700; color: #191f28; margin: 40px 0 16px 0; letter-spacing: -0.01em; }
 .detail-body h4:first-child { margin-top: 0; }
 .detail-body p { margin-bottom: 24px; word-break: keep-all; }
 .detail-body p:last-child { margin-bottom: 0; }
+.detail-body a { color: var(--c-primary); text-decoration: underline; text-underline-offset: 3px; }
 
 .detail-footer { margin-top: 80px; display: flex; justify-content: flex-start; }
 .btn-list {
@@ -68,6 +72,8 @@ body {
     .item-title { font-size: 1.05rem; }
     .detail-title { font-size: 1.4rem; }
     .detail-body { font-size: 1rem; }
+    .detail-body h3 { font-size: 1.2rem; margin: 44px 0 16px 0; }
+    .detail-body h3 + h4 { margin-top: 16px; }
     .detail-body h4 { font-size: 1.1rem; margin: 32px 0 12px 0; }
     .detail-footer { margin-top: 60px; }
 }
